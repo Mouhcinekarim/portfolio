@@ -12,7 +12,9 @@
 .owl-carousel {
     display: none;
     width: 100%;
-    z-index: 1
+    z-index: 1;
+    pointer-events: none;
+
 }
 
 .owl-carousel .owl-stage {
@@ -95,13 +97,7 @@
     visibility: hidden
 }
 
-.owl-carousel.owl-drag .owl-item {
-    
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none
-}
+
 
 .owl-carousel.owl-grab {
     cursor: move;
