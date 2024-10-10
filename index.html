@@ -488,30 +488,29 @@
   <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-database.js"></script>
 
+
   <script type="module">
-    // Import des fonctions Firebase nécessaires
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-analytics.js";
-    import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-database.js";
+	// Import the functions you need from the SDKs you need
+	import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
+	import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-database.js";
 
-    // Configuration Firebase de ton projet
-    const firebaseConfig = {
-      apiKey: "AIzaSyCkyVwbsCiBDgERNcyrybE8Lxt6GELHvmM",
-      authDomain: "portfolio-22607.firebaseapp.com",
-      projectId: "portfolio-22607",
-      storageBucket: "portfolio-22607.appspot.com",
-      messagingSenderId: "347695045398",
-      appId: "1:347695045398:web:bcd6cc43c06ecc8e6f4e37",
-      measurementId: "G-V81L7XZL1L"
-    };
-
-    // Initialiser Firebase et ses services
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    const database = getDatabase(app);
-
-    // Fonction pour envoyer la date d'entrée à Firebase
-    function enregistrerDateEntree() {
+	// TODO: Add SDKs for Firebase products that you want to use
+	// https://firebase.google.com/docs/web/setup#available-libraries
+  
+	// Your web app's Firebase configuration
+	const firebaseConfig = {
+	  apiKey: "AIzaSyBpJLgELbsQz6G0WpvLiTobFhfAzsxDU50",
+	  authDomain: "portfolio-d82ef.firebaseapp.com",
+	  projectId: "portfolio-d82ef",
+	  storageBucket: "portfolio-d82ef.appspot.com",
+	  messagingSenderId: "192376618050",
+	  appId: "1:192376618050:web:0672e29ee721b67abec1db"
+	};
+  
+	// Initialize Firebase
+	const app = initializeApp(firebaseConfig);
+	const database = getDatabase(app);
+	function enregistrerDateEntree() {
       const dateEntree = new Date().toISOString(); // Obtenir la date actuelle
 
       // Envoyer la date dans la base de données Firebase
@@ -524,10 +523,10 @@
         console.error("Erreur lors de l'ajout : ", error);
       });
     }
-
-    // Appeler la fonction lors du chargement de la page
-    window.addEventListener('load', enregistrerDateEntree);
+	window.addEventListener('load', enregistrerDateEntree);
   </script>
+  
+
 
   </body>
 </html>
