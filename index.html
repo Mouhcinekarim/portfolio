@@ -128,7 +128,7 @@
           <div class="col-md-10 heading-section text-center ftco-animate">
           	<h1 class="big big-2">Resume</h1>
             <h2 class="mb-4">Resume</h2>
-            <p>Motivated Full Stack Developer with a strong foundation in Java, Spring Boot, Angular, and a Master's Degree in Business Intelligence. Proven experience in designing and implementing web applications, with a focus on efficiency and user experience. Seeking an internship opportunity for the final year project to apply and expand skills in a real-world setting.</p>
+            <p>Motivated Full Stack Developer with a strong foundation in Java, Spring Boot, Angular, and a Master's Degree in Business Intelligence. Proven experience in designing and implementing web applications, with a focus on efficiency and user experience. Seeking a CDI or freelance opportunity for the final year project to apply and expand skills in a real-world setting.</p>
           </div>
         </div>
     		<div class="row">
@@ -355,7 +355,7 @@
 			<div class="container">
 				<div class="row justify-content-center">
 					<div class="col-md-7 ftco-animate text-center">
-						<h2>I'm <span>Available</span> for internship </h2>
+						<h2>I'm <span>Available</span> for CDI or freelance </h2>
 						<p>Looking for an internship for the final year project</p>
 						<p class="mb-0"><a href="#" class="btn btn-primary py-3 px-5">Contact me</a></p>
 					</div>
@@ -485,6 +485,49 @@
   <script src="js/scrollax.min.js"></script>
   
   <script src="js/main.js"></script>
-    
+  <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-database.js"></script>
+
+  <script type="module">
+    // Import des fonctions Firebase nécessaires
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-analytics.js";
+    import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-database.js";
+
+    // Configuration Firebase de ton projet
+    const firebaseConfig = {
+      apiKey: "AIzaSyCkyVwbsCiBDgERNcyrybE8Lxt6GELHvmM",
+      authDomain: "portfolio-22607.firebaseapp.com",
+      projectId: "portfolio-22607",
+      storageBucket: "portfolio-22607.appspot.com",
+      messagingSenderId: "347695045398",
+      appId: "1:347695045398:web:bcd6cc43c06ecc8e6f4e37",
+      measurementId: "G-V81L7XZL1L"
+    };
+
+    // Initialiser Firebase et ses services
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const database = getDatabase(app);
+
+    // Fonction pour envoyer la date d'entrée à Firebase
+    function enregistrerDateEntree() {
+      const dateEntree = new Date().toISOString(); // Obtenir la date actuelle
+
+      // Envoyer la date dans la base de données Firebase
+      const entreesRef = ref(database, 'entrees/');
+      push(entreesRef, {
+        date: dateEntree
+      }).then(() => {
+        console.log("Date d'entrée ajoutée avec succès !");
+      }).catch((error) => {
+        console.error("Erreur lors de l'ajout : ", error);
+      });
+    }
+
+    // Appeler la fonction lors du chargement de la page
+    window.addEventListener('load', enregistrerDateEntree);
+  </script>
+
   </body>
 </html>
