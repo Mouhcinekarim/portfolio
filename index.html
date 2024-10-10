@@ -510,19 +510,34 @@
 	// Initialize Firebase
 	const app = initializeApp(firebaseConfig);
 	const database = getDatabase(app);
-	function enregistrerDateEntree() {
+	function enregistrerDateEtLocalisation() {
       const dateEntree = new Date().toISOString(); // Obtenir la date actuelle
 
-      // Envoyer la date dans la base de données Firebase
-      const entreesRef = ref(database, 'entrees/');
-      push(entreesRef, {
-        date: dateEntree
-      }).then(() => {
-        console.log("Date d'entrée ajoutée avec succès !");
-      }).catch((error) => {
-        console.error("Erreur lors de l'ajout : ", error);
-      });
-    }
+      // Demander la géolocalisation
+      
+        navigator.geolocation.getCurrentPosition((position) => {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+
+          // Envoyer les données dans Firebase
+          const entreeRef = ref(database, 'entrees/');
+          push(entreeRef, {
+            date: dateEntree,
+            localisation: {
+              latitude: latitude,
+              longitude: longitude
+            }
+          }).then(() => {
+            console.log("Date et localisation ajoutées avec succès !");
+          }).catch((error) => {
+            console.error("Erreur lors de l'ajout : ", error);
+          });
+        }, (error) => {
+          console.error("Erreur de géolocalisation : ", error);
+        });
+      } 
+    
+
 	window.addEventListener('load', enregistrerDateEntree);
   </script>
   
