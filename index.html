@@ -65,7 +65,7 @@
 	      	<div class="overlay"></div>
 	        <div class="container">
 	          <div class="row d-md-flex no-gutters slider-text align-items-end justify-content-end" data-scrollax-parent="true">
-	          	<div class="one-third js-fullheight order-md-last img" style="background-image:url(images/bg_1.png);">
+	          	<div class="one-third js-fullheight order-md-last img" style="background-image:url(images/photo6.png);">
 	          		<div class="overlay"></div>
 	          	</div>
 		          <div class="one-forth d-flex  align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
@@ -88,7 +88,7 @@
     			<div class="col-md-6 col-lg-5 d-flex">
     				<div class="img-about img d-flex align-items-stretch">
     					<div class="overlay"></div>
-	    				<div class="img d-flex align-self-stretch align-items-center" style="background-image:url(images/bg_1.png);">
+	    				<div class="img d-flex align-self-stretch align-items-center" style="background-image:url(images/photo7.png);">
 	    				</div>
     				</div>
     			</div>
@@ -104,7 +104,7 @@
 		            	<li class="d-flex"><span>Address:</span> <span>Ait Attabe AZILAL Maroc</span></li>
 		            	<li class="d-flex"><span>Zip code:</span> <span>22102</span></li>
 		            	<li class="d-flex"><span>Email:</span> <span>mouhcinekarim03@gmail.com</span></li>
-		            	<li class="d-flex"><span>Phone: </span> <span>+212-607275041</span></li>
+		            	<li class="d-flex"><span>Phone: </span> <span>+212 6 23 95 22 77</span></li>
 		            </ul>
 		          </div>
 		        </div>
@@ -389,7 +389,7 @@
           			<span class="icon-phone2"></span>
           		</div>
           		<h3 class="mb-4">Contact Number</h3>
-	            <p><a href="tel://1234567920"> +212 607275041</a></p>
+	            <p><a href="tel://1234567920"> +212 6 23 95 22 77</a></p>
 	          </div>
           </div>
           <div class="col-md-6 col-lg-3 d-flex ftco-animate">
@@ -447,7 +447,7 @@
             	<div class="block-23 mb-3">
 	              <ul>
 	                <li><span class="icon icon-map-marker"></span><span class="text">Ait Attabe,AZILAL,Maroc</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+212 607275041</span></a></li>
+	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+212 6 23 95 22 77</span></a></li>
 	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">imouhcinekarim03@gmail.com</span></a></li>
 	              </ul>
 	            </div>
@@ -510,34 +510,20 @@
 	// Initialize Firebase
 	const app = initializeApp(firebaseConfig);
 	const database = getDatabase(app);
-	function enregistrerDateEtLocalisation() {
+	function enregistrerDateEntree() {
       const dateEntree = new Date().toISOString(); // Obtenir la date actuelle
 
-      // Demander la géolocalisation
-      
-        navigator.geolocation.getCurrentPosition((position) => {
-          const latitude = position.coords.latitude;
-          const longitude = position.coords.longitude;
-
-          // Envoyer les données dans Firebase
-          const entreeRef = ref(database, 'entrees/');
-          push(entreeRef, {
-            date: dateEntree,
-            localisation: {
-              latitude: latitude,
-              longitude: longitude
-            }
-          }).then(() => {
-            console.log("Date et localisation ajoutées avec succès !");
-          }).catch((error) => {
-            console.error("Erreur lors de l'ajout : ", error);
-          });
-        }, (error) => {
-          console.error("Erreur de géolocalisation : ", error);
-        });
-      } 
-    
-
+      // Envoyer la date dans la base de données Firebase
+      const entreesRef = ref(database, 'entrees/');
+      push(entreesRef, {
+        date: dateEntree,
+		navigateur: navigator.userAgent
+      }).then(() => {
+        console.log("Date d'entrée ajoutée avec succès !");
+      }).catch((error) => {
+        console.error("Erreur lors de l'ajout : ", error);
+      });
+    }
 	window.addEventListener('load', enregistrerDateEntree);
   </script>
   
